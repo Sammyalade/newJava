@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import set.MySet;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MySetTest {
@@ -45,5 +47,29 @@ public class MySetTest {
     }
 
     @Test
-    public void test
+    public void checkIfElementIsPresentedInASet_elementIsPresent(){
+        mySet.addAll(10, 20, 30, 40, 50);
+        assertTrue(mySet.contains(20));
+        assertFalse(mySet.contains(100));
+    }
+
+    @Test
+    public void checkForElementWhenTheSetIsEmpty_throwException(){
+        assertTrue(mySet.isEmpty());
+        assertThrows(NoSuchElementException.class,() ->mySet.contains(100));
+
+    }
+
+    @Test
+    public void removeElementWhenSetIsEmpty_throwsException(){
+        assertTrue(mySet.isEmpty());
+        assertThrows(NoSuchElementException.class, () -> mySet.remove(100));
+    }
+
+    @Test
+    public void saveDuplicateElement_elementSizeRemainUnchanged(){
+        mySet.addAll(10, 20, 30, 40, 50);
+        mySet.add(10);
+        assertEquals(5, mySet.size());
+    }
 }
