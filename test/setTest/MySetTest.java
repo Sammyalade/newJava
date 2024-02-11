@@ -72,4 +72,10 @@ public class MySetTest {
         mySet.add(10);
         assertEquals(5, mySet.size());
     }
+
+    @Test
+    public void testThatSetCanPrintToString(){
+        mySet.addAll(10, 20, 30, 40, 50);
+        assertEquals("(10, 20, 30, 40, 50)", mySet.toString());
+    }
 }

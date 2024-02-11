@@ -20,7 +20,6 @@ public class MySet {
         if (!contains(elementToAdd)) {
             createOneMoreContainer();
             elementContainer[countOfElement-1] = elementToAdd;
-            System.out.println(Arrays.toString(elementContainer));
         }
     }
 
@@ -66,6 +65,19 @@ public class MySet {
         }
         elementContainer = temporary;
         countOfElement++;
+    }
+
+    @Override
+    public String toString(){
+        String concatenate = "";
+        for(int count = 0; count < countOfElement; count++){
+            if(count != countOfElement-1){
+                concatenate += Integer.parseInt(String.valueOf(elementContainer[count])) + "," + " ";
+            } else {
+                concatenate += Integer.parseInt(String.valueOf(elementContainer[count]));
+            }
+        }
+        return String.format("(%s)", concatenate);
     }
 
 }
