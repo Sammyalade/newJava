@@ -9,6 +9,6 @@ public class FireDrillSeven {
     }
 
     public static boolean checkOddOrEven(int number){
-        return number % 2 != 0;
+        return number % 2 == 1;
     }
 }
