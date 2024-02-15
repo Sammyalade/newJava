@@ -1,9 +1,10 @@
 package Reflection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
-    private List<Problem> problems;
+    private final List<Problem> problems = new ArrayList<>();
 
 
     public void addProblem(Problem problem){
@@ -17,4 +18,5 @@ public class Person {
     public List<Problem> recountProblem(){
         return problems;
     }
+
 }
