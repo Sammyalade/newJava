@@ -5,7 +5,7 @@ public class Building implements CarbonFootPrint{
     private int numberOfRooms;
 
     @Override
-    public double getCarbonFootPrint() {
+    public double returnCarbonFootPrint() {
         return 0;
     }
 
