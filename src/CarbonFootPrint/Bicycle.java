@@ -11,16 +11,11 @@ public class Bicycle implements CarbonFootPrint{
     }
 
     @Override
-    public double calculateCarbonFootprint() {
+    public double returnCarbonFootPrint() {
         double manufacturingEmissions = 50;
         double maintenanceEmissions = 10;
 
         return manufacturingEmissions + maintenanceEmissions;
-    }
-
-    @Override
-    public double getCarbonFootPrint() {
-        return 0;
     }
     public String getBrand() {
         return brand;
