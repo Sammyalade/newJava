@@ -6,11 +6,11 @@ public class Building implements CarbonFootPrint{
 
     @Override
     public double returnCarbonFootPrint() {
-        return 0;
+        double constructionEmissions = 80;
+        double maintenanceEmissions = 30;
+
+        return constructionEmissions + maintenanceEmissions;
     }
 
-    @Override
-    public double calculateCarbonFootprint() {
-        return 0;
-    }
+
 }
