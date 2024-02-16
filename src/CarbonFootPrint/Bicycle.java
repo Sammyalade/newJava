@@ -1,9 +1,9 @@
 package CarbonFootPrint;
 
 public class Bicycle implements CarbonFootPrint{
-    private String brand;
+    private final String brand;
 
-    private String model;
+    private final String model;
 
     public Bicycle(String brand, String model){
         this.brand = brand;
