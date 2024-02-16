@@ -2,7 +2,6 @@ package CarbonFootPrint;
 
 public interface CarbonFootPrint {
 
-    public double getCarbonFootPrint();
+    public double returnCarbonFootPrint();
 
-    double calculateCarbonFootprint();
 }
