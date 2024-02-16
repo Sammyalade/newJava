@@ -2,7 +2,7 @@ package CarbonFootPrint;
 
 public class Car implements CarbonFootPrint{
     @Override
-    public double getCarbonFootPrint() {
+    public double returnCarbonFootPrint() {
         return 0;
     }
 
