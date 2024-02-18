@@ -1,4 +1,4 @@
-package CarbonFootPrint;
+package carbonFootPrint;
 
 public interface CarbonFootPrint {
 
