@@ -14,4 +14,8 @@ public class Account {
     public void withdraw(int amount, String reason){
 
     }
+
+    public int checkBalance(String pin){
+        return 0;
+    }
 }
