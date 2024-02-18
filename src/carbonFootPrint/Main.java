@@ -1,4 +1,4 @@
-package CarbonFootPrint;
+package carbonFootPrint;
 
 import java.util.ArrayList;
 
