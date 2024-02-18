@@ -1,4 +1,4 @@
-package CarbonFootPrint;
+package carbonFootPrint;
 
 public class Car implements CarbonFootPrint {
     private final double fuelConsumption;
