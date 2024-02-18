@@ -1,4 +1,4 @@
-package CarbonFootPrint;
+package carbonFootPrint;
 
 public class Building implements CarbonFootPrint {
     private final int numberOfRooms;
