@@ -1,4 +1,4 @@
-package CarbonFootPrint;
+package carbonFootPrint;
 
 public class Bicycle implements CarbonFootPrint{
     private final String brand;
