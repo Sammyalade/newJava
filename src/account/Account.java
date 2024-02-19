@@ -5,24 +5,40 @@ public class Account {
     private String name;
     private int balance;
     private String pin;
-    private int number;
+    private int number = 1000;
+
+    public Account(String name, String pin){
+        this.name = name;
+        if(pin.length() <= 4){
+            this.pin = pin;
+        }
+        this.number += 1;
+    }
 
     public void deposit(int amount) throws InvalidAmountException {
-        if (balance < 0){
+        if (amount < 0){
             throw new InvalidAmountException("Invalid Amount to deposit");
+        } else {
+            balance += amount;
         }
     }
 
-    public void withdraw(int amount, String reason) throws InsufficientFundsException {
+    public void withdraw(int amount, String reason) throws InsufficientFundsException, InvalidAmountException {
         if (amount > balance){
             throw new InsufficientFundsException("Insufficient Funds");
+        } else if(amount < 0){
+          throw new InvalidAmountException("Cannot withdraw negative amount") ;
+        } else {
+            balance -= amount;
         }
     }
 
     public int checkBalance(String pin) throws InvalidPinException {
-        if (this.pin.equals(pin)){
+        boolean isInvalidPin = this.pin.equals(pin);
+        if (!isInvalidPin) {
             throw new InvalidPinException("Invalid Pin");
         }
-        return 0;
+        return balance;
     }
+
 }
