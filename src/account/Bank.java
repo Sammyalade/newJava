@@ -1,30 +1,41 @@
 package account;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
 
-    private String name;
+    private String name = "Guaranty Trust Bank";
     private List<Account> accounts;
 
-    public void deposit(int naira, int kobo){
+    public Bank(){
+        this.accounts = new ArrayList<>();
+    }
+
+    public void deposit(int number, int amount){
 
     }
 
-    public void withdraw(int naira, int kobo, String reason){
+    public void withdraw(int number, int amount, String remark){
 
     }
 
-    public void transfer(int naira, int kobo, String reason){
+    public void transfer(int number, int amount, String remark){
 
     }
 
-    public int checkBalance(int accountNumber, String pin){
+    public int checkBalance(int number, String pin){
         return 0;
     }
 
     public Account registerCustomer(String firstName, String lastName,  String pin){
-        return null;
+
+        Account newAccount = new Account(firstName + " " + lastName, pin);
+
+        accounts.add(newAccount);
+
+        return newAccount;
+
     }
 
     public void removeAccount(int accountNumber, String reason){
