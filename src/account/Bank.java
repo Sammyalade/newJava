@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Bank {
 
-    private String name = "Guaranty Trust Bank";
-    private List<Account> accounts;
+    private final String name = "Guaranty Trust Bank";
+    private final List<Account> accounts;
 
     public Bank(){
         this.accounts = new ArrayList<>();
@@ -43,6 +43,11 @@ public class Bank {
     }
 
     public Account findAccount(int accountNumber){
+        for(Account account : accounts){
+            if(account.getNumber() == accountNumber){
+                return account;
+            }
+        }
         return null;
     }
 }
