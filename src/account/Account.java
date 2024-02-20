@@ -2,17 +2,18 @@ package account;
 
 public class Account {
 
+    private static int accountNumberCount = 1000;
     private String name;
     private int balance;
     private String pin;
-    private int number = 1000;
+    private int number;
 
     public Account(String name, String pin){
         this.name = name;
         if(pin.length() <= 4){
             this.pin = pin;
         }
-        this.number += 1;
+        this.number = ++accountNumberCount;
     }
 
     public void deposit(int amount) throws InvalidAmountException {
@@ -41,4 +42,12 @@ public class Account {
         return balance;
     }
 
+    public int getNumber(){
+        return number;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Account Name: %s%nAccount Number: "name);
+    }
 }
