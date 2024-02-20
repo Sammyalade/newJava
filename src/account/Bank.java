@@ -39,7 +39,7 @@ public class Bank {
     }
 
     public void removeAccount(int accountNumber, String reason){
-
+        accounts.removeIf(account -> account.getNumber() == accountNumber);
     }
 
     public Account findAccount(int accountNumber){
