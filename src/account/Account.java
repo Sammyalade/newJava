@@ -48,6 +48,6 @@ public class Account {
 
     @Override
     public String toString(){
-        return String.format("Account Name: %s%nAccount Number: "name);
+        return String.format("Account Name: %s%nAccount Number: %s%nBalance: %s", name, number, balance);
     }
 }
