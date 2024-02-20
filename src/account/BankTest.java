@@ -3,7 +3,7 @@ package account;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BankTest {
 
@@ -18,9 +18,9 @@ public class BankTest {
     public void registerNewAccount_newAccountRegisteredTest(){
         Account myAccount = myBank.registerCustomer("Onome", "Precious", "4455");
 
-        assertNotNull(myAccount);
+        assertEquals(myAccount ,myBank.findAccount(1001));
     }
 
     @Test
-    public void
+    public void testThat
 }
