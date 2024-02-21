@@ -1,57 +1,58 @@
 package account;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
 
-    private final String name = "Guaranty Trust Bank";
-    private final List<Account> accounts;
-
     public Bank(){
         this.accounts = new ArrayList<>();
+        accountNumberGenerator = 1000;
     }
 
-    public void deposit(int number, int amount) throws InvalidAmountException {
-        for(Account account : accounts){
-            if (account.getNumber() == number){
-                account.deposit(amount);
-            }
-        }
-    }
-
-    public void withdraw(int number, int amount, String remark){
-
-    }
-
-    public void transfer(int number, int amount, String remark){
-
-    }
-
-    public int checkBalance(int number, String pin){
-        return 0;
-    }
-
-    public Account registerCustomer(String firstName, String lastName,  String pin){
-
-        Account newAccount = new Account(firstName + " " + lastName, pin);
-
+    public Account register(String firstName, String lastName, String correctPin) {
+        Account newAccount = new Account(firstName + " " + lastName, generateAccountNumber(), correctPin);
         accounts.add(newAccount);
-
         return newAccount;
 
     }
+    public int generateAccountNumber(){
+        return accountNumberGenerator + ++numberOfUser;
 
-    public void removeAccount(int accountNumber, String reason){
-        accounts.removeIf(account -> account.getNumber() == accountNumber);
     }
 
+    public int countNumberOfUser() {
+        return numberOfUser;
+    }
 
-    public Account findAccount(int accountNumber){
+    public void deposit(int amount, int accountNumber) {
+        for(Account account : accounts){
+            if(account.getNumber() == accountNumber)
+                account.deposit(amount);
+        }
+    }
+
+    public void withdraw(int amount, int accountNumber, String correctPin) {
         for(Account account : accounts){
             if(account.getNumber() == accountNumber){
-                return account;
+                account.withdraw(amount, correctPin);
             }
         }
-        return null;
+    }
+    private int numberOfUser;
+
+    private final int accountNumberGenerator;
+
+    private final List<Account> accounts;
+
+    public void transfer(int senderAccount, int receiverAccount, int amount, String correctPin) {
+        for(Account account: accounts ){
+            if (account.getNumber() == senderAccount){
+                account.withdraw(amount, correctPin);
+            }
+            if (account.getNumber() == receiverAccount){
+                account.deposit(amount);
+            }
+        }
     }
 }
