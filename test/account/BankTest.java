@@ -58,4 +58,26 @@ public class BankTest {
         assertEquals(3_000, account1.getBalance("correctPin"));
         assertEquals(2_000, account2.getBalance("correctPinSecondAccount"));
     }
+
+    @Test
+    public void checkBalanceFromTheBank_balanceIsReturned(){
+        Account account1 = guarantyTrustBank.register("firstName", "lastName", "correctPin");
+        guarantyTrustBank.deposit(5_000, 1001);
+        assertEquals(5_000, guarantyTrustBank.checkBalance(1001, "correctPin"));
+    }
+
+    @Test
+    public void removeAccountFromBank_accountCannotBeFoundAnymore(){
+        Account account1 = guarantyTrustBank.register("firstName", "lastName", "correctPin");
+        Account account2 = guarantyTrustBank.register("firstNameSecondAccount", "lastNameSecondAccount", "correctPinSecondAccount");
+        guarantyTrustBank.remove(1001, "correctPin");
+        assertEquals(1, guarantyTrustBank.countNumberOfUser());
+
+    }
+
+    @Test
+    public void findAccountThatExist_returnsAccountInformationTest(){
+        Account account1 = guarantyTrustBank.register("firstName", "lastName", "correctPin");
+        assertEquals(account1, guarantyTrustBank.findAccount(1001));
+    }
 }
