@@ -39,12 +39,6 @@ public class Bank {
             }
         }
     }
-    private int numberOfUser;
-
-    private final int accountNumberGenerator;
-
-    private final List<Account> accounts;
-
     public void transfer(int senderAccount, int receiverAccount, int amount, String correctPin) {
         for(Account account: accounts ){
             if (account.getNumber() == senderAccount){
@@ -55,4 +49,35 @@ public class Bank {
             }
         }
     }
+
+    public int checkBalance(int accountNumber, String correctPin) {
+        int balance = 0;
+        for(Account account : accounts){
+            if(account.getNumber() == accountNumber){
+                balance = account.getBalance(correctPin);
+            }
+        }
+        return balance;
+    }
+
+    public void remove(int accountNumber, String correctPin) {
+        accounts.removeIf(account -> account.getNumber() == accountNumber);
+        numberOfUser--;
+    }
+
+    public Account findAccount(int accountNumber) {
+        Account accountInfo = null;
+        for(Account account : accounts){
+            if(account.getNumber() == accountNumber){
+                accountInfo = account;
+            }
+        }
+        return accountInfo;
+    }
+
+    private int numberOfUser;
+
+    private final int accountNumberGenerator;
+
+    private final List<Account> accounts;
 }
