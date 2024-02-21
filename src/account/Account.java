@@ -62,6 +62,11 @@ public class Account {
         validate(correctPin);
     }
 
+    @Override
+    public String toString(){
+        return String.format("Account Name: %s%nAccount Number: %s%nBalance: %s", name, number, balance);
+    }
+
 
     private int number;
     private String name;
