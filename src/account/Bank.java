@@ -1,5 +1,4 @@
 package account;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +11,12 @@ public class Bank {
         this.accounts = new ArrayList<>();
     }
 
-    public void deposit(int number, int amount){
-
+    public void deposit(int number, int amount) throws InvalidAmountException {
+        for(Account account : accounts){
+            if (account.getNumber() == number){
+                account.deposit(amount);
+            }
+        }
     }
 
     public void withdraw(int number, int amount, String remark){
@@ -41,6 +44,7 @@ public class Bank {
     public void removeAccount(int accountNumber, String reason){
         accounts.removeIf(account -> account.getNumber() == accountNumber);
     }
+
 
     public Account findAccount(int accountNumber){
         for(Account account : accounts){

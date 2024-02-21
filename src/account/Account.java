@@ -1,19 +1,18 @@
 package account;
 
 public class Account {
-
-    private static int accountNumberCount = 1000;
     private String name;
     private int balance;
     private String pin;
     private int number;
+
+    private boolean isGenerated = false;
 
     public Account(String name, String pin){
         this.name = name;
         if(pin.length() <= 4){
             this.pin = pin;
         }
-        this.number = ++accountNumberCount;
     }
 
     public void deposit(int amount) throws InvalidAmountException {
@@ -22,6 +21,9 @@ public class Account {
         } else {
             balance += amount;
         }
+    }
+    public void resetAccountNumber(){
+        nextAccountNumber = 1000;
     }
 
     public void withdraw(int amount, String reason) throws InsufficientFundsException, InvalidAmountException {
@@ -40,6 +42,10 @@ public class Account {
             throw new InvalidPinException("Invalid Pin");
         }
         return balance;
+    }
+
+    public void setNumber(int accountNumber){
+        number = accountNumber;
     }
 
     public int getNumber(){
