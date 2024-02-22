@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Bank {
 
-    public Bank(){
+    public Bank(String bankName){
+        name = bankName;
         this.accounts = new ArrayList<>();
         accountNumberGenerator = 1000;
     }
@@ -76,6 +77,8 @@ public class Bank {
     }
 
     private int numberOfUser;
+
+    private final String name;
 
     private final int accountNumberGenerator;
 
