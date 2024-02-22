@@ -12,7 +12,7 @@ public class BankTest {
 
     @BeforeEach
     public void initializeBank(){
-        guarantyTrustBank = new Bank();
+        guarantyTrustBank = new Bank("TrustBank");
     }
     @Test
     public void registerOneAccount_numberOfAccountIsOneTest(){
