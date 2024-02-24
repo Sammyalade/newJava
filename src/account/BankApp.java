@@ -1,6 +1,6 @@
 package account;
 
-import java.util.Scanner;
+import javax.swing.*;
 
 public class BankApp {
     private static final Bank newBank = new Bank("TrustBank");
@@ -11,6 +11,7 @@ public class BankApp {
 
     private static void startUpApp() {
         String mainMenu = """
+                Welcome to Trust Bank
                 1. Create Account
                 2. Deposit
                 3. Withdraw
@@ -23,8 +24,7 @@ public class BankApp {
     }
 
     private static String input(String display) {
-        System.out.println(display);
-        return new Scanner(System.in).nextLine();
+        return JOptionPane.showInputDialog(null, display);
     }
 
     private static void switchCase(String input) {
@@ -46,14 +46,26 @@ public class BankApp {
     private static void closeAccount() {
         String accountNumber = input("Enter Account Number: ");
         String pin = input("Enter pin");
-        newBank.remove(Integer.parseInt(accountNumber), pin);
-        print("Account successfully closed");
+        try {
+            newBank.remove(Integer.parseInt(accountNumber), pin);
+            print("Account successfully closed");
+        } catch (Exception ex){
+            print("Incorrect account number or pin");
+        } finally {
+            startUpApp();
+        }
     }
 
     private static void checkBalance() {
         String accountNumber = input("Enter your Account Number: ");
         String pin = input("Enter Pin: ");
-        print("Your Balance is " + newBank.checkBalance(Integer.parseInt(accountNumber), pin));
+        try {
+            print("Your Balance is " + newBank.checkBalance(Integer.parseInt(accountNumber), pin));
+        } catch (Exception ex){
+            print("Enter a correct pin and try again");
+        } finally {
+            startUpApp();
+        }
     }
 
     private static void Transfer() {
@@ -61,8 +73,14 @@ public class BankApp {
         String sender = input("Enter your Account Number: ");
         String receiver = input("Enter your Account Number: ");
         String pin = input("Enter Pin: ");
-        newBank.transfer(Integer.parseInt(sender), Integer.parseInt(receiver), Integer.parseInt(amount), pin);
-        print("Transfer successful");
+        try {
+            newBank.transfer(Integer.parseInt(sender), Integer.parseInt(receiver), Integer.parseInt(amount), pin);
+            print("Transfer successful");
+        } catch(Exception ex){
+            print("Please enter the right set of information and pin and try again");
+        } finally {
+            startUpApp();
+        }
 
     }
 
@@ -70,15 +88,28 @@ public class BankApp {
         String amount = input("Enter amount to deposit: ");
         String accountNumber = input("Enter your Account Number: ");
         String pin = input("Enter Pin: ");
-        newBank.withdraw(Integer.parseInt(amount), Integer.parseInt(accountNumber), pin);
-        print("Withdrawal success");
+        try {
+            newBank.withdraw(Integer.parseInt(amount), Integer.parseInt(accountNumber), pin);
+            print("Withdrawal success");
+        }  catch (Exception ex){
+            print("Please try again");
+        } finally {
+            startUpApp();
+        }
     }
 
     private static void Deposit() {
         String amount = input("Enter amount to deposit: ");
         String accountNumber = input("Enter your Account Number: ");
-        newBank.deposit(Integer.parseInt(accountNumber), Integer.parseInt(amount));
-        print("Deposit successful");
+        try {
+            newBank.deposit(Integer.parseInt(accountNumber), Integer.parseInt(amount));
+            print("Deposit successful");
+        } catch (Exception ex){
+            print("Enter a sensible amount and a correct account number");
+        } finally {
+            startUpApp();
+        }
+
     }
 
     private static void createAccount() {
@@ -87,10 +118,11 @@ public class BankApp {
         String pin = input("Set pin: ");
         newBank.register(firstName, lastName, pin);
         print("Account successfully registered");
+        startUpApp();
     }
 
     private static void print(String display) {
-        System.out.println(display);
+        JOptionPane.showMessageDialog(null, display);
     }
 
 
