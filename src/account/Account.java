@@ -1,8 +1,8 @@
 package account;
 
-import exception.InsufficientFundsException;
-import exception.InvalidAmountException;
-import exception.InvalidPinException;
+import account.exception.InsufficientFundsException;
+import account.exception.InvalidAmountException;
+import account.exception.InvalidPinException;
 
 public class Account {
 
