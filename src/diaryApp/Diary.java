@@ -54,7 +54,7 @@ public class Diary {
         return generateId;
     }
 
-    public void deleteEntry(int id) {
+    public void deleteEntry(int id, int i) {
         entries.remove(findEntry(id));
         generateId--;
     }
