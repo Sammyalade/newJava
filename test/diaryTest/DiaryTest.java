@@ -184,7 +184,13 @@ public class DiaryTest {
         assertThrows(IncorrectPinException.class, ()->myDiary.createEntry(1244,"My second Entry", "This is second Entry"));
     }
 
-//    @Test
-//    public void
+    @Test
+    public void createNewEntry_deleteWithWrongPin_throwsIncorrectPinException(){
+        myDiary.createEntry(1234, "My Entry", "This is first Entry")
+        assertThrows(IncorrectPinException.class, () ->myDiary.deleteEntry(1234, 1));
+    }
+
+    @Test
+    public void
 
 }
