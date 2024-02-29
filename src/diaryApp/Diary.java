@@ -54,8 +54,9 @@ public class Diary {
         return generateId;
     }
 
-    public void deleteEntry(int id, int i) {
-        entries.remove(findEntry(id));
+    public void deleteEntry(int id, int pin) {
+        if (isIncorrectPin(pin)) throw new IncorrectPinException("Incorrect Pin");
+        entries.remove(findEntry(id, 1234));
         generateId--;
     }
 
@@ -70,10 +71,12 @@ public class Diary {
         return new DiaryIsLockedException("Diary is Locked");
     }
 
-    public Entry findEntry(int id) {
+    public Entry findEntry(int id, int pin) {
         if (isLocked) throw getDiaryIsLocked();
         else if(entries.isEmpty()) {throw getEntryIsEmpty();}
-        else {
+        else if (isIncorrectPin(pin)) {
+            throw new IncorrectPinException("Incorrect Pin");
+        } else {
             for(Entry entry: entries){
                 if (entry.getId() == id){
                     return entry;
@@ -87,7 +90,7 @@ public class Diary {
         if (isLocked) {throw getDiaryIsLocked();}
         else {
                 Entry newEntry = new Entry(id, title, body);
-                entries.set(entries.indexOf(findEntry(id)), newEntry);
+                entries.set(entries.indexOf(findEntry(id, 1234)), newEntry);
         }
     }
 }
