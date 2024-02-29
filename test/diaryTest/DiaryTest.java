@@ -53,7 +53,7 @@ public class DiaryTest {
         assertFalse(myDiary.isLocked());
 
         myDiary.createEntry(1234, "My Entry", "This is first Entry");
-        myDiary.deleteEntry(1, 1);
+        myDiary.deleteEntry(1, 1234);
 
         assertEquals(0, myDiary.checkSizeOfEntry());
     }
@@ -73,7 +73,7 @@ public class DiaryTest {
         myDiary.lockDiary(1234);
         assertTrue(myDiary.isLocked());
 
-        assertThrows(DiaryIsLockedException.class, () -> myDiary.deleteEntry(1, 1));
+        assertThrows(DiaryIsLockedException.class, () -> myDiary.deleteEntry(1, 1234));
     }
 
     @Test
@@ -83,7 +83,7 @@ public class DiaryTest {
         myDiary.createEntry(1234, "My Entry", "This is first Entry");
 
 
-        assertTrue(myDiary.findEntry(1) instanceof Entry);
+        assertTrue(myDiary.findEntry(1, 1234) instanceof Entry);
     }
 
     @Test
@@ -93,7 +93,7 @@ public class DiaryTest {
         myDiary.lockDiary(1234);
         assertTrue(myDiary.isLocked());
 
-        assertThrows(DiaryIsLockedException.class, () -> myDiary.findEntry(1));
+        assertThrows(DiaryIsLockedException.class, () -> myDiary.findEntry(1, 1234));
     }
 
     @Test
@@ -103,7 +103,7 @@ public class DiaryTest {
 
         myDiary.updateEntry(1, "My Entry", "This is my updated entry");
 
-        assertEquals("This is my updated entry", myDiary.findEntry(1).getBody());
+        assertEquals("This is my updated entry", myDiary.findEntry(1, 1234).getBody());
     }
 
     @Test
@@ -120,7 +120,7 @@ public class DiaryTest {
         assertFalse(myDiary.isLocked());
         assertEquals(0, myDiary.checkSizeOfEntry());
 
-        assertThrows(EntryIsEmptyException.class, ()-> myDiary.deleteEntry(0, 1));
+        assertThrows(EntryIsEmptyException.class, ()-> myDiary.deleteEntry(1, 1234));
     }
 
     @Test
@@ -128,7 +128,7 @@ public class DiaryTest {
         assertFalse(myDiary.isLocked());
         assertEquals(0, myDiary.checkSizeOfEntry());
 
-        assertThrows(EntryIsEmptyException.class, ()-> myDiary.findEntry(0));
+        assertThrows(EntryIsEmptyException.class, ()-> myDiary.findEntry(0, 1234));
     }
 
     @Test
@@ -138,7 +138,7 @@ public class DiaryTest {
         myDiary.createEntry(1234, "My Entry", "This is first Entry");
         myDiary.createEntry(1234, "My second Entry", "This is second Entry");
 
-        assertThrows(EntryNotFoundException.class, ()-> myDiary.findEntry(100));
+        assertThrows(EntryNotFoundException.class, ()-> myDiary.findEntry(100, 1234));
     }
 
     @Test
@@ -147,9 +147,9 @@ public class DiaryTest {
         myDiary.createEntry(1234, "My Entry", "This is first Entry");
         myDiary.createEntry(1234, "My second Entry", "This is second Entry");
 
-        myDiary.deleteEntry(1, 1);
+        myDiary.deleteEntry(1, 1234);
 
-        assertThrows(EntryNotFoundException.class, ()-> myDiary.findEntry(1));
+        assertThrows(EntryNotFoundException.class, ()-> myDiary.findEntry(1, 1234));
     }
 
     @Test
@@ -158,7 +158,7 @@ public class DiaryTest {
         myDiary.createEntry(1234, "My Entry", "This is first Entry");
         myDiary.createEntry(1234, "My second Entry", "This is second Entry");
 
-        assertThrows(EntryNotFoundException.class, ()->myDiary.deleteEntry(1000, 1));
+        assertThrows(EntryNotFoundException.class, ()->myDiary.deleteEntry(1000, 1234));
     }
 
     @Test
@@ -187,10 +187,13 @@ public class DiaryTest {
     @Test
     public void createNewEntry_deleteWithWrongPin_throwsIncorrectPinException(){
         myDiary.createEntry(1234, "My Entry", "This is first Entry");
-        assertThrows(IncorrectPinException.class, () ->myDiary.deleteEntry(1234, 1));
+        assertThrows(IncorrectPinException.class, () ->myDiary.deleteEntry(1, 1233));
     }
 
-//    @Test
-//    public void
+    @Test
+    public void findEntryWhenPinIsWrong_throwsIncorrectPinException(){
+        myDiary.createEntry(1234, "My Entry", "This is first Entry");
+        assertThrows(IncorrectPinException.class, ()->myDiary.findEntry(1, 1233));
+    }
 
 }
