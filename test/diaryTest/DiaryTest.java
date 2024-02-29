@@ -53,7 +53,7 @@ public class DiaryTest {
         assertFalse(myDiary.isLocked());
 
         myDiary.createEntry(1234, "My Entry", "This is first Entry");
-        myDiary.deleteEntry(1);
+        myDiary.deleteEntry(1, 1);
 
         assertEquals(0, myDiary.checkSizeOfEntry());
     }
@@ -73,7 +73,7 @@ public class DiaryTest {
         myDiary.lockDiary(1234);
         assertTrue(myDiary.isLocked());
 
-        assertThrows(DiaryIsLockedException.class, () -> myDiary.deleteEntry(1));
+        assertThrows(DiaryIsLockedException.class, () -> myDiary.deleteEntry(1, 1));
     }
 
     @Test
@@ -120,7 +120,7 @@ public class DiaryTest {
         assertFalse(myDiary.isLocked());
         assertEquals(0, myDiary.checkSizeOfEntry());
 
-        assertThrows(EntryIsEmptyException.class, ()-> myDiary.deleteEntry(0));
+        assertThrows(EntryIsEmptyException.class, ()-> myDiary.deleteEntry(0, 1));
     }
 
     @Test
@@ -147,7 +147,7 @@ public class DiaryTest {
         myDiary.createEntry(1234, "My Entry", "This is first Entry");
         myDiary.createEntry(1234, "My second Entry", "This is second Entry");
 
-        myDiary.deleteEntry(1);
+        myDiary.deleteEntry(1, 1);
 
         assertThrows(EntryNotFoundException.class, ()-> myDiary.findEntry(1));
     }
@@ -158,7 +158,7 @@ public class DiaryTest {
         myDiary.createEntry(1234, "My Entry", "This is first Entry");
         myDiary.createEntry(1234, "My second Entry", "This is second Entry");
 
-        assertThrows(EntryNotFoundException.class, ()->myDiary.deleteEntry(1000));
+        assertThrows(EntryNotFoundException.class, ()->myDiary.deleteEntry(1000, 1));
     }
 
     @Test
@@ -186,11 +186,11 @@ public class DiaryTest {
 
     @Test
     public void createNewEntry_deleteWithWrongPin_throwsIncorrectPinException(){
-        myDiary.createEntry(1234, "My Entry", "This is first Entry")
+        myDiary.createEntry(1234, "My Entry", "This is first Entry");
         assertThrows(IncorrectPinException.class, () ->myDiary.deleteEntry(1234, 1));
     }
 
-    @Test
-    public void
+//    @Test
+//    public void
 
 }
