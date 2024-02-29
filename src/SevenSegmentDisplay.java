@@ -42,7 +42,7 @@ public class SevenSegmentDisplay {
         }
     }
 
-    public void switchOn() throws Exception {
+    public void switchOn() {
         int[] entries = putEntriesInAnArray(switches);
         if (entries[7] == 1){
             checkHorizontalSwitchToPrint(entries[0]);
@@ -55,7 +55,7 @@ public class SevenSegmentDisplay {
         }
     }
 
-    private int[] putEntriesInAnArray(String switch1) throws Exception {
+    private int[] putEntriesInAnArray(String switch1) {
         int[] array = new int[switch1.length()];
         for (int index = 0; index < switch1.length(); index++) {
             array[index] = Character.getNumericValue(switch1.charAt(index));
@@ -63,7 +63,7 @@ public class SevenSegmentDisplay {
                 throw new InputMismatchException("Enter only 0s and 1s");
             }
             if (index > 7){
-                throw new Exception("Input should not be more than 8");
+                throw new RuntimeException("Input should not be more than 8");
             }
         }
         return array;
