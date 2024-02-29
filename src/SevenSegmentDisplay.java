@@ -60,7 +60,6 @@ public class SevenSegmentDisplay {
                 throw new Exception("Input should not be more than 8");
             }
         }
-
         return array;
     }
 
