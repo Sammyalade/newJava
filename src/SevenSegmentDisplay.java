@@ -56,7 +56,7 @@ public class SevenSegmentDisplay {
         int[] array = new int[switch1.length()];
         for (int index = 0; index < switch1.length(); index++) {
             array[index] = Character.getNumericValue(switch1.charAt(index));
-            if (index > 8){
+            if (index > 7){
                 throw new Exception("Input should not be more than 8");
             }
         }
