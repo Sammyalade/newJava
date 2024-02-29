@@ -60,7 +60,7 @@ public class SevenSegmentDisplay {
         for (int index = 0; index < switch1.length(); index++) {
             array[index] = Character.getNumericValue(switch1.charAt(index));
             if(array[index] > 1 || array[index] < 0){
-                throw new InputMismatchException("Enter only 0s and 1s");
+                throw new InputMismatchException("Input at " + index+1 + "is greater than 1 or less than 0");
             }
             if (index > 7){
                 throw new RuntimeException("Input should not be more than 8");
