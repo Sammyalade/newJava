@@ -11,12 +11,14 @@ import java.util.List;
 
 public class Diary {
 
+    private String userName;
     private final int pin;
     private boolean isLocked;
     private int generateId;
     private final List<Entry> entries = new ArrayList<>();
 
     public Diary(String username, String password, int pin) {
+        this.userName = username;
         this.pin = pin;
 
     }
@@ -92,5 +94,9 @@ public class Diary {
                 Entry newEntry = new Entry(id, title, body);
                 entries.set(entries.indexOf(findEntry(id, 1234)), newEntry);
         }
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }
