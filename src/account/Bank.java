@@ -18,7 +18,7 @@ public class Bank {
 
     }
     public int generateAccountNumber(){
-        return accountNumberGenerator + ++numberOfUser;
+        return accountNumberGenerator++;
 
     }
 
@@ -80,7 +80,7 @@ public class Bank {
 
     private final String name;
 
-    private final int accountNumberGenerator;
+    private int accountNumberGenerator;
 
     private final List<Account> accounts;
 }
