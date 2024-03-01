@@ -23,7 +23,7 @@ public class Account {
 
     public void deposit(int amount) {
         if(isInvalid(amount)) throw new InvalidAmountException("Invalid Amount");
-        balance += amount;
+        else balance += amount;
     }
 
     private boolean isInvalidPin(String correctPin){
