@@ -118,6 +118,7 @@ public class BankApp {
         String pin = input("Set pin: ");
         newBank.register(firstName, lastName, pin);
         print("Account successfully registered");
+        print(newBank.register(firstName, lastName, pin).toString());
         startUpApp();
     }
 
