@@ -2,5 +2,7 @@ package ticTacToe;
 
 public enum Positions {
 
-    X, O, EMPTY;
+    X,
+    O,
+    EMPTY;
 }
