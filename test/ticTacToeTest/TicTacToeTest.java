@@ -9,7 +9,7 @@ public class TicTacToeTest {
 
     @Test
     public void testThatUserCanMakeAMove(){
-        TicTacToe.play();
+        TicTacToe.;
         assertTrue();
     }
 }
