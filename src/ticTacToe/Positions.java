@@ -4,5 +4,15 @@ public enum Positions {
 
     X,
     O,
-    EMPTY;
+    EMPTY(" ");
+
+    private final String space;
+
+    Positions(String space) {
+        this.space = space;
+    }
+
+    public String getSpace(){
+        return space;
+    }
 }
