@@ -8,34 +8,27 @@ public class TicTacToe {
 
     public TicTacToe() {
         gameBoard = new Positions[][]{
-                {Positions.valueOf(Positions.EMPTY.getSpace()), Positions.valueOf(Positions.EMPTY.getSpace()), Positions.valueOf(Positions.EMPTY.getSpace())},
-                {Positions.valueOf(Positions.EMPTY.getSpace()), Positions.valueOf(Positions.EMPTY.getSpace()), Positions.valueOf(Positions.EMPTY.getSpace())},
-                {Positions.valueOf(Positions.EMPTY.getSpace()), Positions.valueOf(Positions.EMPTY.getSpace()), Positions.valueOf(Positions.EMPTY.getSpace())}
+                {Positions.valueOf(" "), Positions.valueOf(" "), Positions.valueOf(" ")},
+                {Positions.valueOf(" "), Positions.valueOf(" "), Positions.valueOf(" ")},
+                {Positions.valueOf(" "), Positions.valueOf(" "), Positions.valueOf(" ")}
         };
 
         isPlayerTurn = true;
 
     }
 
-    public void play() {
-        int count = 0;
-        while(count < 10){
-
-            count++;
-        }
-    }
-
     public void makeMove(int row, int column) {
-        checkMove(row, column);
-
-        if (gameBoard[row][column] == Positions.valueOf(Positions.EMPTY.getSpace())) {
-            if (isPlayerTurn) {
-                gameBoard[row][column] = Positions.X;
-            } else {
-                gameBoard[row][column] = Positions.O;
+        do{
+            checkMove(row, column);
+            if (gameBoard[row][column] == Positions.valueOf(Positions.EMPTY.getSpace())) {
+                if (isPlayerTurn) {
+                    gameBoard[row][column] = Positions.X;
+                } else {
+                    gameBoard[row][column] = Positions.O;
+                }
+                isPlayerTurn = !isPlayerTurn;
             }
-            isPlayerTurn = !isPlayerTurn;
-        }
+        } while(!checkWinner());
     }
 
     private void checkMove(int row, int column) {
