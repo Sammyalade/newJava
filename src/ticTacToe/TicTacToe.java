@@ -8,19 +8,27 @@ public class TicTacToe {
 
     public TicTacToe() {
         gameBoard = new Positions[][]{
-                {Positions.EMPTY, Positions.EMPTY, Positions.EMPTY},
-                {Positions.EMPTY, Positions.EMPTY, Positions.EMPTY},
-                {Positions.EMPTY, Positions.EMPTY, Positions.EMPTY}
+                {Positions.valueOf(Positions.EMPTY.getSpace()), Positions.valueOf(Positions.EMPTY.getSpace()), Positions.valueOf(Positions.EMPTY.getSpace())},
+                {Positions.valueOf(Positions.EMPTY.getSpace()), Positions.valueOf(Positions.EMPTY.getSpace()), Positions.valueOf(Positions.EMPTY.getSpace())},
+                {Positions.valueOf(Positions.EMPTY.getSpace()), Positions.valueOf(Positions.EMPTY.getSpace()), Positions.valueOf(Positions.EMPTY.getSpace())}
         };
 
         isPlayerTurn = true;
 
     }
 
+    public void play() {
+        int count = 0;
+        while(count < 10){
+
+            count++;
+        }
+    }
+
     public void makeMove(int row, int column) {
         checkMove(row, column);
 
-        if (gameBoard[row][column] == Positions.EMPTY) {
+        if (gameBoard[row][column] == Positions.valueOf(Positions.EMPTY.getSpace())) {
             if (isPlayerTurn) {
                 gameBoard[row][column] = Positions.X;
             } else {
@@ -35,13 +43,19 @@ public class TicTacToe {
             throw new RuntimeException("Invalid move. Rows or colum must not be less than 0 or greater than 2");
         }
 
-        if (gameBoard[row][column] != Positions.EMPTY)
+        if (gameBoard[row][column] != Positions.valueOf(Positions.EMPTY.getSpace()))
             throw new RuntimeException("Invalid move");
     }
+    public boolean checkWinner(){
+        return checkWinnerDiagonalLeft()
+                || checkWinnerInRow()
+                || checkWinnerInColumn()
+                || checkWinnerDiagonalRight();
+    }
 
-    private boolean checkWinnerInRow() {
+    public boolean checkWinnerInRow() {
         for (int index = 0; index < 3; index++) {
-            if (gameBoard[index][0] != Positions.EMPTY &&
+            if (gameBoard[index][0] != Positions.valueOf(Positions.EMPTY.getSpace()) &&
                     gameBoard[index][0] == gameBoard[index][1] &&
                     gameBoard[index][1] == gameBoard[index][2]) {
                 return true;
@@ -50,9 +64,9 @@ public class TicTacToe {
         return false;
     }
 
-    private boolean checkWinnerInColumn() {
+    public boolean checkWinnerInColumn() {
         for (int index = 0; index < 3; index++) {
-            if (gameBoard[0][index] != Positions.EMPTY &&
+            if (gameBoard[0][index] != Positions.valueOf(Positions.EMPTY.getSpace()) &&
                     gameBoard[0][index] == gameBoard[1][index] &&
                     gameBoard[index][1] == gameBoard[2][index]) {
                 return true;
@@ -61,8 +75,8 @@ public class TicTacToe {
         return false;
     }
 
-    private boolean checkWinnerDiagonalLeft() {
-        return gameBoard[0][0] != Positions.EMPTY &&
+    public boolean checkWinnerDiagonalLeft() {
+        return gameBoard[0][0] != Positions.valueOf(Positions.EMPTY.getSpace()) &&
                 gameBoard[0][0] == gameBoard[1][1] &&
                 gameBoard[1][1] == gameBoard[2][2];
     }
@@ -75,13 +89,24 @@ public class TicTacToe {
 
     public boolean isDraw() {
         int emptyCount = 0;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (gameBoard[i][j] == Positions.EMPTY) {
+        for (int index1 = 0; index1 < 3; index1++) {
+            for (int index2 = 0; index2 < 3; index2++) {
+                if (gameBoard[index1][index2] == Positions.valueOf(Positions.EMPTY.getSpace())) {
                     emptyCount++;
                 }
             }
         }
         return emptyCount == 0;
+    }
+
+    public void displayGame(){
+        System.out.println("________________");
+        for (int index1 = 0; index1 < 3; index1++){
+            for(int index2 = 0; index2 < 3; index2++){
+                System.out.print(gameBoard[index1][index2] + "   ");
+            }
+            System.out.println();
+            System.out.println("________________");
+        }
     }
 }
