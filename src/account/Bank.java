@@ -27,38 +27,25 @@ public class Bank {
     }
 
     public void deposit(int amount, int accountNumber) {
-        for(Account account : accounts){
-            if(account.getNumber() == accountNumber)
-                account.deposit(amount);
-        }
+       Account accountToDeposit = findAccount(accountNumber);
+       accountToDeposit.deposit(amount);
     }
 
     public void withdraw(int amount, int accountNumber, String correctPin) {
-        for(Account account : accounts){
-            if(account.getNumber() == accountNumber){
-                account.withdraw(amount, correctPin);
-            }
-        }
+        Account accountToWithdraw = findAccount(accountNumber);
+        accountToWithdraw.withdraw(amount, correctPin);
+
     }
     public void transfer(int senderAccount, int receiverAccount, int amount, String correctPin) {
-        for(Account account: accounts ){
-            if (account.getNumber() == senderAccount){
-                account.withdraw(amount, correctPin);
-            }
-            if (account.getNumber() == receiverAccount){
-                account.deposit(amount);
-            }
-        }
+        Account sender = findAccount(senderAccount);
+        sender.withdraw(amount, correctPin);
+        Account receiver = findAccount(receiverAccount);
+        receiver.deposit(amount);
     }
 
     public int checkBalance(int accountNumber, String correctPin) {
-        int balance = 0;
-        for(Account account : accounts){
-            if(account.getNumber() == accountNumber){
-                balance = account.getBalance(correctPin);
-            }
-        }
-        return balance;
+        Account accountToCheckBalance = findAccount(accountNumber);
+        return accountToCheckBalance.getBalance(correctPin);
     }
 
     public void remove(int accountNumber, String correctPin) {
