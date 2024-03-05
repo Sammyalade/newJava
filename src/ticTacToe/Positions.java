@@ -2,17 +2,17 @@ package ticTacToe;
 
 public enum Positions {
 
-    X,
-    O,
+    X("X"),
+    O("O"),
     EMPTY(" ");
 
-    private final String space;
+    private final String value;
 
-    Positions(String space) {
-        this.space = space;
+    Positions(String value) {
+        this.value = value;
     }
 
-    public String getSpace(){
-        return space;
+    public String getValue(){
+        return value;
     }
 }
