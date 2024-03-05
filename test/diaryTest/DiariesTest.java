@@ -2,11 +2,11 @@ package diaryTest;
 
 import diaryApp.Diaries;
 import diaryApp.Diary;
+import diaryApp.exception.IncorrectPinException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DiariesTest {
 
@@ -44,8 +44,33 @@ public class DiariesTest {
     @Test
     public void accessDiaryWhenPasswordIsWrong_throwsIncorrectPasswordException(){
         myDiaries.addDiary("username", "password", 1234);
-        Diary newDiary = myDiaries.findDiary("username", "pasword");
+        assertThrows(IncorrectPinException.class, () ->myDiaries.findDiary("username", "pasword"));
 
+    }
 
+    @Test
+    public void deleteDiary_findDeletedDiary_throwsExceptionTest(){
+        myDiaries.addDiary("username", "password", 1234);
+        myDiaries.addDiary("username2", "password2", 2234);
+        myDiaries.deleteDiary("username", "password");
+        assertThrows(RuntimeException.class, ()->myDiaries.findDiary("username", "password"));
+    }
+
+    @Test
+    public void deleteWithWrongPassword_throwsException(){
+        myDiaries.addDiary("username", "password", 1234);
+        myDiaries.addDiary("username2", "password2", 2234);
+        assertThrows(IncorrectPinException.class, ()->myDiaries.deleteDiary("username", "passwod"));
+    }
+
+    @Test
+    public void createDiaryWithEmptyUsername_throwsExceptionTest(){
+        assertThrows(RuntimeException.class, ()-> myDiaries.addDiary("", "", 1234));
+    }
+
+    @Test
+    public void add2DiariesWithTheSameUsername_throwsException(){
+        myDiaries.addDiary("username", "password", 1234);
+        assertThrows(RuntimeException.class, ()-> myDiaries.addDiary("username", "password", 1234));
     }
 }
