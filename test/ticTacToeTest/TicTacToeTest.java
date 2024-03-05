@@ -3,13 +3,11 @@ package ticTacToeTest;
 import org.junit.Test;
 import ticTacToe.TicTacToe;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 public class TicTacToeTest {
 
     @Test
     public void testThatUserCanMakeAMove(){
-        TicTacToe.;
-        assertTrue();
+        TicTacToe ticTacToe = new TicTacToe();
+        ticTacToe.makeMove(2, 1);
     }
 }
