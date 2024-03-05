@@ -4,7 +4,7 @@ import ticTacToe.TicTacToe;
 
 import java.util.Scanner;
 
-public class TicTacToeTest {
+public class Player {
     public static void main(String[] args) {
         Scanner collector = new Scanner(System.in);
         TicTacToe ticTacToe = new TicTacToe();
@@ -14,6 +14,6 @@ public class TicTacToeTest {
             System.out.println("Enter column: ");
             int column = collector.nextInt();
             ticTacToe.makeMove(row, column);
-        } while(ticTacToe.checkWinner() || ticTacToe.isDraw());
+        } while(!ticTacToe.checkWinner() || !ticTacToe.isDraw());
     }
 }
