@@ -16,7 +16,7 @@ public class TicTacToe {
     }
 
     public void makeMove(int row, int column) {
-        do{
+        do {
             checkMove(row, column);
             if (gameBoard[row][column].equals(Positions.EMPTY)) {
                 gameBoard[row][column] = (isPlayerTurn) ? Positions.X : Positions.O;
@@ -28,8 +28,9 @@ public class TicTacToe {
                 }
                 isPlayerTurn = !isPlayerTurn;
             }
-        }
+        } while (checkWinner() || isDraw());
 
+    }
 
     private void checkMove(int row, int column) {
         if (row < 0 || row > 2 || column < 0 || column > 2) {
