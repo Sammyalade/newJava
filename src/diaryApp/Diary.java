@@ -12,6 +12,7 @@ import java.util.List;
 public class Diary {
 
     private String userName;
+    private String password;
     private final int pin;
     private boolean isLocked;
     private int generateId;
@@ -19,6 +20,7 @@ public class Diary {
 
     public Diary(String username, String password, int pin) {
         this.userName = username;
+        this.password = password;
         this.pin = pin;
 
     }
@@ -98,5 +100,9 @@ public class Diary {
 
     public String getUserName() {
         return userName;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
