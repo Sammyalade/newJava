@@ -15,21 +15,20 @@ public class TicTacToe {
         isPlayerTurn = true;
     }
 
-    public void makeMove(int row, int column) {
-        do {
-            checkMove(row, column);
-            if (gameBoard[row][column].equals(Positions.EMPTY)) {
-                gameBoard[row][column] = (isPlayerTurn) ? Positions.X : Positions.O;
-                if (checkWinner()) {
-                    System.out.println("Player " + (isPlayerTurn ? "X" : "O") + " wins!");
-                }
-                if (isDraw()) {
-                    System.out.println("It's a draw!");
-                }
-                isPlayerTurn = !isPlayerTurn;
-            }
-        } while (checkWinner() || isDraw());
 
+    public void makeMove(int row, int column) {
+        checkMove(row, column);
+        if (gameBoard[row][column].equals(Positions.EMPTY)) {
+            gameBoard[row][column] = (isPlayerTurn) ? Positions.X : Positions.O;
+            if (checkWinner()) {
+                System.out.println("Player " + (isPlayerTurn ? "X" : "O") + " wins!");
+            }
+            if (isDraw()) {
+                System.out.println("It's a draw!");
+            }
+            isPlayerTurn = !isPlayerTurn;
+            displayGame();
+        }
     }
 
     private void checkMove(int row, int column) {
@@ -97,7 +96,7 @@ public class TicTacToe {
         System.out.println("________________");
         for (Positions[] row : gameBoard) {
             for (Positions position : row) {
-                System.out.print(((position == Positions.EMPTY) ? " " : position.getValue()) + "   ");
+                System.out.print(((position == Positions.EMPTY) ? " " : position.getValue()) + "      ");
             }
             System.out.println();
             System.out.println("________________");
