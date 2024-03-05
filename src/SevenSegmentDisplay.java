@@ -52,7 +52,7 @@ public class SevenSegmentDisplay {
             checkHorizontalSwitchToPrint(entries[3]);
         } else {
             System.out.println("Main switch is off");
-        }
+       }
     }
 
     private int[] putEntriesInAnArray(String switch1) {
