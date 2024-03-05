@@ -1,5 +1,7 @@
 package account;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.swing.*;
 
 public class BankApp {
@@ -27,7 +29,7 @@ public class BankApp {
         return JOptionPane.showInputDialog(null, display);
     }
 
-    private static void switchCase(String input) {
+    private static void switchCase(@NotNull String input) {
         switch (input){
             case "1" -> createAccount();
             case "2" -> Deposit();
