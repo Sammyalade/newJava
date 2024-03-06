@@ -11,8 +11,10 @@ import java.util.List;
 
 public class Diary {
 
-    private String userName;
-    private String password;
+
+
+    private final String userName;
+    private final String password;
     private final int pin;
     private boolean isLocked;
     private int generateId;
@@ -96,6 +98,10 @@ public class Diary {
                 Entry newEntry = new Entry(id, title, body);
                 entries.set(entries.indexOf(findEntry(id, 1234)), newEntry);
         }
+    }
+
+    public String toString(){
+        return String.format("Username: %s", userName);
     }
 
     public String getUserName() {
