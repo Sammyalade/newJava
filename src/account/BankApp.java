@@ -41,7 +41,7 @@ public class BankApp {
         }
     }
 
-    private static void exitApp() {
+    public static void exitApp() {
         System.exit(0);
     }
 
