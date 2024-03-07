@@ -2,8 +2,8 @@ package wagesPerDay;
 
 public class WagePerDayCalculator {
 
-    public int returnWage(int parcelDelivered, int basePay){
-        checkSuccessfulDelivery(parcelDelivered);
+    public static int returnWage(int parcelDelivered){
+        return checkSuccessfulDelivery(parcelDelivered) + 5_000;
     }
 
     private static int checkSuccessfulDelivery(int parcelDelivered) {
