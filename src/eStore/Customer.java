@@ -15,6 +15,14 @@ public class Customer {
         billingInformation.add(new BillingInformation( receiverPhoneNumber, receiverName, cityName, country, houseNumber, street, state, cardCVV, cardExpirationYear, cardExpirationMonth, cardNumber, cardName, cardType));
     }
 
+    public void removeBillingInformation(BillingInformation billingInformationToRemove){
+        billingInformation.removeIf(billingInfo -> billingInfo.equals(billingInformationToRemove));
+    }
+
+    public void removeItemInShoppingCart(Items itemToRemove){
+        shoppingCart.removeItems(itemToRemove);
+    }
+
     public void addProductsToCart(Items items){
         shoppingCart.addItem(items);
     }
