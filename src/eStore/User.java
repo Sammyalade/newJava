@@ -7,9 +7,7 @@ public class User {
     private String name;
     private String password;
     private String phoneNumber;
-    private Customer customer;
-    private Seller seller;
-    private Admin admin;
+
 
     public User(int age, String emailAddress, String homeAddress, String name, String password, String phoneNumber, Customer customer, Seller seller, Admin admin) {
         this.age = age;
@@ -18,9 +16,6 @@ public class User {
         this.name = name;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.customer = customer;
-        this.seller = seller;
-        this.admin = admin;
     }
 
     public int getAge() {
