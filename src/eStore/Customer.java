@@ -2,7 +2,7 @@ package eStore;
 
 import java.util.List;
 
-public class Customer {
+public class Customer implements UserType{
 
     private List<BillingInformation> billingInformation;
     private ShoppingCart shoppingCart;
