@@ -1,10 +1,4 @@
 package eStore;
 
-public class Address {
-    
-    private String cityName;
-    private String country;
-    private String houseNumber;
-    private String street;
-    private String state;
+public record Address(String cityName, String country, String houseNumber, String street, String state) {
 }
