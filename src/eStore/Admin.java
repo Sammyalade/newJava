@@ -1,4 +1,4 @@
 package eStore;
 
-public class Admin {
+public class Admin implements UserType{
 }
