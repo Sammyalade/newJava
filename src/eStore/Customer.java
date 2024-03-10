@@ -11,9 +11,8 @@ public class Customer {
         this.shoppingCart = shoppingCart;
     }
 
-    public void createNewBillingInfo(String receiverPhoneNumber, String receiverName, Address deliveryAddress, CreditCardInformation cardInformation){
-        billingInformation.add(new BillingInformation(receiverPhoneNumber, receiverName, deliveryAddress, cardInformation));
-
+    public void createNewBillingInfo(String receiverPhoneNumber, String receiverName, String cityName, String country, String houseNumber, String street, String state, String cardCVV, String cardExpirationYear, String cardExpirationMonth, String cardNumber, String cardName, CardType cardType){
+        billingInformation.add(new BillingInformation( receiverPhoneNumber, receiverName, cityName, country, houseNumber, street, state, cardCVV, cardExpirationYear, cardExpirationMonth, cardNumber, cardName, cardType));
     }
 
     public void addProductsToCart(Items items){
