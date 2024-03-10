@@ -19,4 +19,12 @@ public class Customer {
     public void addProductsToCart(Items items){
         shoppingCart.addItem(items);
     }
+
+    public String getProductsInCart(){
+        return shoppingCart.getItems();
+    }
+
+    public String getBillingInformation(){
+        return billingInformation.toString();
+    }
 }
