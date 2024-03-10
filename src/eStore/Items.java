@@ -10,6 +10,14 @@ public class Items {
         this.product = product;
     }
 
+    public void setProduct(Product product){
+        this.product = product;
+    }
+
+    public void setQuantityOfProductSelected(int quantityOfProductSelected){
+        this.quantityOfProductSelected = quantityOfProductSelected;
+    }
+
     public int returnQuantityOfProductSelected(){
         return quantityOfProductSelected;
     }
