@@ -6,4 +6,17 @@ public class Customer {
 
     private List<BillingInformation> billingInformation;
     private ShoppingCart shoppingCart;
+
+    public Customer(ShoppingCart shoppingCart){
+        this.shoppingCart = shoppingCart;
+    }
+
+    public void createNewBillingInfo(String receiverPhoneNumber, String receiverName, Address deliveryAddress, CreditCardInformation cardInformation){
+        billingInformation.add(new BillingInformation(receiverPhoneNumber, receiverName, deliveryAddress, cardInformation));
+
+    }
+
+    public void addProductsToCart(Items items){
+        shoppingCart.addItem(items);
+    }
 }
