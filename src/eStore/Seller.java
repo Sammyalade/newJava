@@ -1,4 +1,4 @@
 package eStore;
 
-public class Seller {
+public class Seller implements UserType{
 }
