@@ -7,15 +7,21 @@ public class User {
     private String name;
     private String password;
     private String phoneNumber;
+    private final UserType userType;
 
 
-    public User(int age, String emailAddress, String homeAddress, String name, String password, String phoneNumber, Customer customer, Seller seller, Admin admin) {
+    public User(int age, String emailAddress, String homeAddress, String name, String password, String phoneNumber, UserType userType) {
         this.age = age;
         this.emailAddress = emailAddress;
         this.homeAddress = homeAddress;
         this.name = name;
         this.password = password;
         this.phoneNumber = phoneNumber;
+        this.userType = userType;
+    }
+
+    public String getUserType(){
+        return userType.toString();
     }
 
     public int getAge() {
@@ -41,9 +47,4 @@ public class User {
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
-    public String getCustomer() {
-        return customer.toString();
-    }
-
 }
