@@ -17,4 +17,8 @@ public class ShoppingCart {
     public String getItems(){
         return items.toString();
     }
+
+    public void removeItems(Items itemToRemove){
+        items.removeIf(itemCheck -> itemCheck.equals(itemToRemove));
+    }
 }
