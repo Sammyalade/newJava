@@ -2,21 +2,21 @@ package eStore;
 
 import java.util.List;
 
-public class Customer implements UserType{
+public class Customer extends User{
 
-    private List<BillingInformation> billingInformation;
+    private List<BillingInformation> billingInfo;
     private ShoppingCart shoppingCart;
 
-    public Customer(ShoppingCart shoppingCart){
-        this.shoppingCart = shoppingCart;
+    public Customer(int age, String emailAddress, String homeAddress, String name, String password, String phoneNumber){
+        super(age, emailAddress, homeAddress, name, password, phoneNumber);
     }
 
     public void createNewBillingInfo(String receiverPhoneNumber, String receiverName, String cityName, String country, String houseNumber, String street, String state, String cardCVV, String cardExpirationYear, String cardExpirationMonth, String cardNumber, String cardName, CardType cardType){
-        billingInformation.add(new BillingInformation( receiverPhoneNumber, receiverName, cityName, country, houseNumber, street, state, cardCVV, cardExpirationYear, cardExpirationMonth, cardNumber, cardName, cardType));
+        billingInfo.add(new BillingInformation( receiverPhoneNumber, receiverName, cityName, country, houseNumber, street, state, cardCVV, cardExpirationYear, cardExpirationMonth, cardNumber, cardName, cardType));
     }
 
     public void removeBillingInformation(BillingInformation billingInformationToRemove){
-        billingInformation.removeIf(billingInfo -> billingInfo.equals(billingInformationToRemove));
+        billingInfo.removeIf(billingInfo -> billingInfo.equals(billingInformationToRemove));
     }
 
     public void removeItemInShoppingCart(Items itemToRemove){
@@ -31,7 +31,7 @@ public class Customer implements UserType{
         return shoppingCart.getItems();
     }
 
-    public String getBillingInformation(){
-        return billingInformation.toString();
+    public String getBillingInfo(){
+        return billingInfo.toString();
     }
 }
