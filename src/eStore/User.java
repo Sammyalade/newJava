@@ -7,7 +7,6 @@ public class User {
     private String name;
     private String password;
     private String phoneNumber;
-    private UserType userType;
 
 
     public User(int age, String emailAddress, String homeAddress, String name, String password, String phoneNumber) {
@@ -17,10 +16,6 @@ public class User {
         this.name = name;
         this.password = password;
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getUserType(){
-        return userType.toString();
     }
 
     public int getAge() {
@@ -45,9 +40,5 @@ public class User {
 
     public String getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public void setUserType(UserType userType) {
-        this.userType = userType;
     }
 }
