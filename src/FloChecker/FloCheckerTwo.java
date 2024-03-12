@@ -5,23 +5,49 @@ import java.time.format.DateTimeFormatter;
 
 public class FloCheckerTwo {
 
-    public String checkMenstrualCircle(String startOfMenstrualCircle, int averageCycleLength) {
+    public String checkMenstrualCircle(String startOfMenstrualCircle, int averageCycleLength, int lengthOfFlow) throws Exception {
         LocalDate dateOfMenstrualCircleStart = changeDateFormat(startOfMenstrualCircle);
-
-        System.out.printf("Menstruation starts on %s and it ends on %s%n", DateTimeFormatter.ofPattern("MMM d, uuuu").format(dateOfMenstrualCircleStart), DateTimeFormatter.ofPattern("MMM d, uuuu").format(dateOfMenstrualCircleStart.plusDays(averageCycleLength)));
-        System.out.printf("Fertile window is from on %s to %s%n", DateTimeFormatter.ofPattern("MMM d, uuuu").format(dateOfMenstrualCircleStart.plusDays(averageCycleLength-17)), DateTimeFormatter.ofPattern("MMM d, uuuu").format(dateOfMenstrualCircleStart.plusDays(averageCycleLength-12)));
-        System.out.printf("Ovulation occurs on %s and ends 12 to 24 hours after.", DateTimeFormatter.ofPattern("MMM d, uuuu").format(dateOfMenstrualCircleStart.plusDays(averageCycleLength-14)));
-        return String.format("Menstruation starts on %s and it ends on %s, Fertile window is from %s to %s, Ovulation occurs on %s and ends 12 to 24 hours after.", DateTimeFormatter.ofPattern("MMM d, uuuu").format(dateOfMenstrualCircleStart), DateTimeFormatter.ofPattern("MMM d, uuuu").format(dateOfMenstrualCircleStart.plusDays(averageCycleLength)), DateTimeFormatter.ofPattern("MMM d, uuuu").format(dateOfMenstrualCircleStart.plusDays(averageCycleLength-17)), DateTimeFormatter.ofPattern("MMM d, uuuu").format(dateOfMenstrualCircleStart.plusDays(averageCycleLength-12)), DateTimeFormatter.ofPattern("MMM d, uuuu").format(dateOfMenstrualCircleStart.plusDays(averageCycleLength-14)));
+        LocalDate nextPeriodDate = calculateNextPeriodDate(dateOfMenstrualCircleStart, averageCycleLength);
+        LocalDate fertileWindowStart = calculateStartOfFertileWindow(dateOfMenstrualCircleStart, averageCycleLength);
+        LocalDate fertileWindowEnds = calculateEndOfFertileWindow(dateOfMenstrualCircleStart, averageCycleLength);
+        LocalDate safePeriodStarts = calculateStartOfSafePeriod(dateOfMenstrualCircleStart, lengthOfFlow);
+        LocalDate safePeriodEnds = calculateEndOfSafePeriod(dateOfMenstrualCircleStart, lengthOfFlow);
+        return displayDate(averageCycleLength, dateOfMenstrualCircleStart, nextPeriodDate, fertileWindowStart, fertileWindowEnds, safePeriodStarts, safePeriodEnds);
 
     }
 
-    public LocalDate changeDateFormat(String dateInString){
-        LocalDate storeDate = null;
-        try {
-            storeDate = LocalDate.parse(dateInString);
-        } catch(Exception error) {
-            error.getLocalizedMessage();
-        }
-        return storeDate;
+    public LocalDate calculateNextPeriodDate(LocalDate startOfMenstrualCircle, int averageCircleLength) throws Exception{
+        System.out.println(startOfMenstrualCircle.plusDays(averageCircleLength));
+        return startOfMenstrualCircle.plusDays(averageCircleLength);
+    }
+
+    public LocalDate calculateStartOfFertileWindow(LocalDate dateOfMenstrualCircleStart, int averageCycleLength) throws Exception{
+        return dateOfMenstrualCircleStart.plusDays(averageCycleLength-18);
+    }
+
+    public LocalDate calculateEndOfFertileWindow(LocalDate dateOfMenstrualCircleStart, int averageCycleLength) throws Exception{
+        return dateOfMenstrualCircleStart.plusDays(averageCycleLength-13);
+    }
+
+    public LocalDate calculateStartOfSafePeriod(LocalDate dateOfMenstrualCircleStart, int lengthOfFlow) throws Exception{
+        return dateOfMenstrualCircleStart.plusDays(lengthOfFlow+1);
+    }
+
+    public LocalDate calculateEndOfSafePeriod(LocalDate dateOfMenstrualCircleStart, int lengthOfFlow) throws Exception{
+        return dateOfMenstrualCircleStart.plusDays(lengthOfFlow+5);
+    }
+
+    public LocalDate changeDateFormat(String dateInString) throws Exception {
+        return LocalDate.parse(dateInString);
+    }
+
+    public String displayDate(int averageCycleLength, LocalDate dateOfMenstrualCircleStart, LocalDate fertileWindowStart, LocalDate nextPeriodDate, LocalDate fertileWindowEnds, LocalDate safePeriodStarts, LocalDate safePeriodEnds) {
+        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("MMM d, yyyy");
+        return String.format("""
+                Your Menstrual Period starts from %s
+                Your safe period starts from %s and ends on %s
+                Your fertile window starts from %s and ends on %s
+                Your next Menstrual circle will start on %s
+                """, dateOfMenstrualCircleStart.format(formatDate), safePeriodStarts.format(formatDate), safePeriodEnds.format(formatDate), fertileWindowStart.format(formatDate), fertileWindowEnds.format(formatDate), nextPeriodDate.format(formatDate));
     }
 }
