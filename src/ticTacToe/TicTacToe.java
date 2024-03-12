@@ -16,19 +16,20 @@ public class TicTacToe {
     }
 
 
-    public void makeMove(int row, int column) {
+    public String makeMove(int row, int column) {
         checkMove(row, column);
         if (gameBoard[row][column].equals(Positions.EMPTY)) {
             gameBoard[row][column] = (isPlayerTurn) ? Positions.X : Positions.O;
             if (checkWinner()) {
-                System.out.println("Player " + (isPlayerTurn ? "X" : "O") + " wins!");
+                return String.format("Player " + (isPlayerTurn ? "X" : "O") + " wins!");
             }
             if (isDraw()) {
-                System.out.println("It's a draw!");
+                return "It's a draw!";
             }
             isPlayerTurn = !isPlayerTurn;
             displayGame();
         }
+        return null;
     }
 
     private void checkMove(int row, int column) {
