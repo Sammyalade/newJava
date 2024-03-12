@@ -10,11 +10,7 @@ public class EStore {
         users = new ArrayList<>();
     }
 
-    public void addUser(int age, String emailAddress, String homeAddress, String name, String password, String phoneNumber, UserType userType){
-        User newUser = new User(age, emailAddress, homeAddress, name, password, phoneNumber);
-
-        newUser.setUserType(userType);
-
-        users.add(newUser);
+    public void addUser(String userType, int age, String emailAddress, String homeAddress, String name, String password, String phoneNumber){
+        users.add(UserType.createUser(userType, age, emailAddress, homeAddress, name, password, phoneNumber));
     }
 }
