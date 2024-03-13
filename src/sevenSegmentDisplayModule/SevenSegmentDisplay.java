@@ -1,3 +1,5 @@
+package sevenSegmentDisplayModule;
+
 import java.util.InputMismatchException;
 
 public class SevenSegmentDisplay {
