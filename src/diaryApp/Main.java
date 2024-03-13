@@ -35,6 +35,7 @@ public class Main {
                 3. Delete Entry
                 4. Lock Diary
                 5. Unlock Diary
+                6. Exit app
                 """);
         checkOption(takeInput);
     }
