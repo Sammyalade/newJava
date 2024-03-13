@@ -16,30 +16,42 @@ public class TicTacToe {
     }
 
 
-    public String makeMove(int row, int column) {
-        checkMove(row, column);
+    public void makeMove(int position) throws Exception {
+        int row = checkRow(position);
+        int column = checkColumn(position);
         if (gameBoard[row][column].equals(Positions.EMPTY)) {
             gameBoard[row][column] = (isPlayerTurn) ? Positions.X : Positions.O;
             if (checkWinner()) {
-                return String.format("Player " + (isPlayerTurn ? "X" : "O") + " wins!");
+                return;
             }
             if (isDraw()) {
-                return "It's a draw!";
+                return;
             }
-            isPlayerTurn = !isPlayerTurn;
-            displayGame();
-        }
-        return null;
+        } else throw new Exception("Position Already filled, please play in another position");
     }
 
-    private void checkMove(int row, int column) {
-        if (row < 0 || row > 2 || column < 0 || column > 2) {
-            throw new RuntimeException("Invalid move. Rows or colum must not be less than 0 or greater than 2");
-        }
-
-        if (gameBoard[row][column] != Positions.EMPTY)
-            throw new RuntimeException("Invalid move");
+    public void switchPlayerTurn() {
+        isPlayerTurn = !isPlayerTurn;
     }
+
+    public boolean isPlayerTurn() {
+        return isPlayerTurn;
+    }
+
+    private int checkRow(int position) throws Exception{
+        if (position > 0 && position < 4) return 0;
+        else if (position > 3 && position < 7) return 1;
+        else if (position > 6 && position < 10) return 2;
+        throw new Exception("Incorrect Position");
+    }
+
+    private int checkColumn(int position) throws Exception{
+        if (position > 0 && position < 4) return position-1;
+        else if (position > 3 && position < 7) return position-4;
+        else if (position > 6 && position < 10) return position-7;
+        throw new Exception("Incorrect Position");
+    }
+
     public boolean checkWinner(){
         return checkWinnerDiagonalLeft()
                 || checkWinnerInRow()
@@ -62,7 +74,7 @@ public class TicTacToe {
         for (int index = 0; index < 3; index++) {
             if (gameBoard[0][index] != Positions.EMPTY &&
                     gameBoard[0][index] == gameBoard[1][index] &&
-                    gameBoard[index][1] == gameBoard[2][index]) {
+                    gameBoard[1][index] == gameBoard[2][index]) {
                 return true;
             }
         }
@@ -93,14 +105,13 @@ public class TicTacToe {
         return emptyCount == 0;
     }
 
-    public void displayGame() {
-        System.out.println("________________");
-        for (Positions[] row : gameBoard) {
-            for (Positions position : row) {
-                System.out.print(((position == Positions.EMPTY) ? " " : position.getValue()) + "      ");
-            }
-            System.out.println();
-            System.out.println("________________");
-        }
+
+
+    public Positions getGameBoard(int row, int column) {
+        return gameBoard[row][column];
     }
+    public Positions[][] getGameBoard() {
+        return gameBoard;
+    }
+
 }
