@@ -17,25 +17,25 @@ public class SixGeoPoliticalZoneTest {
     }
 
     @Test
-    public void checkForGeoPoliticalZoneOfAState_functionReturnsTheZoneTest(){
+    public void checkForGeoPoliticalZoneOfAState_functionReturnsTheZoneTest() throws Exception {
         assertEquals(NORTH_CENTRAL, checker.returnPoliticalZone("Benue"));
 
     }
 
     @Test
-    public void checkForGeoPoliticalZoneOfAState_functionReturnsTheZoneTest2(){
+    public void checkForGeoPoliticalZoneOfAState_functionReturnsTheZoneTest2() throws Exception {
         assertEquals(SOUTH_SOUTH, checker.returnPoliticalZone("Bayelsa"));
 
     }
 
     @Test
-    public void checkForGeoPoliticalZoneOfAState_functionReturnsTheZoneTest3(){
+    public void checkForGeoPoliticalZoneOfAState_functionReturnsTheZoneTest3() throws Exception {
         assertEquals(SOUTH_EAST, checker.returnPoliticalZone("Abia"));
 
     }
 
     @Test
-    public void checkForGeoPoliticalZoneOfAState_functionReturnsTheZoneTest4(){
+    public void checkForGeoPoliticalZoneOfAState_functionReturnsTheZoneTest4() throws Exception {
            assertNull(checker.returnPoliticalZone("Oshogbo"));
 
     }
