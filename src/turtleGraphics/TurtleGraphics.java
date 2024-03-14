@@ -3,6 +3,7 @@ package turtleGraphics;
 public class TurtleGraphics {
 
     private Direction direction = Direction.EAST;
+    private Position position = new Position(0, 0);
 
     private boolean isPenUp = true;
     public boolean isPenUp() {
@@ -31,6 +32,27 @@ public class TurtleGraphics {
         direction = Direction.valueOf(direction.turnRight());
     }
 
-    public void moveForward(int row, int column) {
+    public void moveForward(int numberOfMovement) {
+        switch(checkCurrentDirection()){
+            case EAST -> performMovementEastward(numberOfMovement);
+            case SOUTH -> performMovementSouthwards(numberOfMovement);
+            case NORTH -> performMovementNorthward(numberOfMovement);
+        }
+    }
+
+    private void performMovementNorthward(int numberOfMovement) {
+        position.setRow(position.getRow()-(numberOfMovement-1));
+    }
+
+    private void performMovementSouthwards(int numberOfMovement) {
+        position.setRow(position.getRow()+numberOfMovement-1);
+    }
+
+    private void performMovementEastward(int numberOfMovement) {
+        position.setColumn(position.getColumn()+numberOfMovement-1);
+    }
+
+    public Position currentPosition() {
+        return position;
     }
 }
