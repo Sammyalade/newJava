@@ -38,9 +38,7 @@ public class TurtleGraphics {
     }
 
     public void moveForward(int numberOfMovement) {
-        if (!isPenUp){
-            sketchPad.write();
-        }
+
         switch(checkCurrentDirection()){
             case EAST -> performMovementEastward(numberOfMovement);
             case SOUTH -> performMovementSouthwards(numberOfMovement);
@@ -49,7 +47,10 @@ public class TurtleGraphics {
     }
 
     private void performMovementNorthward(int numberOfMovement) {
-        position.setRow(position.getRow()-(numberOfMovement-1));
+        for(int index = 1; index < numberOfMovement; index++){
+            position.setRow(position.getRow()-1);
+            if(!isPenUp) sketchPad.write(position.getRow(), position.getColumn());
+        }
     }
 
     private void performMovementSouthwards(int numberOfMovement) {
@@ -57,8 +58,20 @@ public class TurtleGraphics {
     }
 
     private void performMovementEastward(int numberOfMovement) {
-        position.setColumn(position.getColumn()+numberOfMovement-1);
+        for (int index = 0; index < numberOfMovement; index++) {
+            checkIfPenIsDown();
+            if(index == numberOfMovement-1){ break;}
+            position.setColumn(position.getColumn() + 1);
+        }
+        System.out.println(sketchPad.toString());
     }
+
+    private void checkIfPenIsDown() {
+        if (!isPenUp) {
+            sketchPad.write(position.getRow(), position.getColumn());
+        }
+    }
+
 
     public Position currentPosition() {
         return position;
