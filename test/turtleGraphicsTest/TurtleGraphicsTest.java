@@ -94,5 +94,9 @@ public class TurtleGraphicsTest {
         assertSame(Direction.EAST, ijapa.checkCurrentDirection());
     }
 
+    @Test
+    public void testThatTurtleCanMoveForward(){
+        ijapa.moveForward(0, 0);
 
+    }
 }

@@ -30,4 +30,7 @@ public class TurtleGraphics {
     public void turnRight() {
         direction = Direction.valueOf(direction.turnRight());
     }
+
+    public void moveForward(int row, int column) {
+    }
 }
