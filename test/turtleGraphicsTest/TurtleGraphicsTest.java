@@ -106,6 +106,7 @@ public class TurtleGraphicsTest {
     @Test
     public void testThatTurtleCanMoveForwardEastwards(){
         assertTrue(ijapa.isPenUp());
+        assertEquals(Direction.EAST, ijapa.checkCurrentDirection());
         assertEquals(new Position(0,0), ijapa.currentPosition());
         ijapa.moveForward(5);
         assertEquals(new Position(0, 4), ijapa.currentPosition());
@@ -138,11 +139,10 @@ public class TurtleGraphicsTest {
 
     @Test
     public void testThatWhenPenIsDown_turtleMovesAndWrites1(){
-        SketchPad sketchPad = new SketchPad(5, 5);
         ijapa.penDown();
         assertFalse(ijapa.isPenUp());
         assertEquals(Direction.EAST, ijapa.checkCurrentDirection());
-        ijapa.moveForward(1);
+        ijapa.moveForward(2);
         assertEquals(1, sketchPad.getSketchPad(0,0));
 
     }
