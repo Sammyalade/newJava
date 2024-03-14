@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import turtleGraphics.Direction;
 import turtleGraphics.Position;
+import turtleGraphics.SketchPad;
 import turtleGraphics.TurtleGraphics;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,10 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TurtleGraphicsTest {
 
     private TurtleGraphics ijapa;
+    private SketchPad sketchPad;
 
     @BeforeEach
     public void setUp(){
-        ijapa = new TurtleGraphics();
+        sketchPad = new SketchPad(5, 5);
+        ijapa = new TurtleGraphics(sketchPad);
     }
     @Test
     public void testIsPenUp(){
@@ -133,6 +136,15 @@ public class TurtleGraphicsTest {
         assertEquals(new Position(0, 0), ijapa.currentPosition());
     }
 
+    @Test
+    public void testThatWhenPenIsDown_turtleMovesAndWrites1(){
+        SketchPad sketchPad = new SketchPad(5, 5);
+        ijapa.penDown();
+        assertFalse(ijapa.isPenUp());
+        assertEquals(Direction.EAST, ijapa.checkCurrentDirection());
+        ijapa.moveForward(1);
+        assertEquals(1, sketchPad.getSketchPad(0,0));
 
+    }
 
 }
