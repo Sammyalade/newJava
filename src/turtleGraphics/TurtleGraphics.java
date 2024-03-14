@@ -4,6 +4,11 @@ public class TurtleGraphics {
 
     private Direction direction = Direction.EAST;
     private Position position = new Position(0, 0);
+    private SketchPad sketchPad;
+
+    public TurtleGraphics(SketchPad sketchPad){
+        this.sketchPad = sketchPad;
+    }
 
     private boolean isPenUp = true;
     public boolean isPenUp() {
@@ -33,6 +38,9 @@ public class TurtleGraphics {
     }
 
     public void moveForward(int numberOfMovement) {
+        if (!isPenUp){
+            sketchPad.write();
+        }
         switch(checkCurrentDirection()){
             case EAST -> performMovementEastward(numberOfMovement);
             case SOUTH -> performMovementSouthwards(numberOfMovement);
