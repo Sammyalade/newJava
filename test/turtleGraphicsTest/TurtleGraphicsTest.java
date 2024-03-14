@@ -3,6 +3,7 @@ package turtleGraphicsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import turtleGraphics.Direction;
+import turtleGraphics.Position;
 import turtleGraphics.TurtleGraphics;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -95,8 +96,43 @@ public class TurtleGraphicsTest {
     }
 
     @Test
-    public void testThatTurtleCanMoveForward(){
-        ijapa.moveForward(0, 0);
-
+    public void testThatTurtleIsInStartPosition(){
+        assertEquals(new Position(0,0), ijapa.currentPosition());
     }
+
+    @Test
+    public void testThatTurtleCanMoveForwardEastwards(){
+        assertTrue(ijapa.isPenUp());
+        assertEquals(new Position(0,0), ijapa.currentPosition());
+        ijapa.moveForward(5);
+        assertEquals(new Position(0, 4), ijapa.currentPosition());
+    }
+
+    @Test
+    public void testThatTurtleCanMoveForwardSouthwards(){
+        assertTrue(ijapa.isPenUp());
+        ijapa.turnRight();
+        assertEquals(Direction.SOUTH, ijapa.checkCurrentDirection());
+        assertEquals(new Position(0,0), ijapa.currentPosition());
+        ijapa.moveForward(5);
+        assertEquals(new Position(4, 0), ijapa.currentPosition());
+    }
+
+    @Test
+    public void testThatTurtleCanMoveForwardNorthward(){
+        assertTrue(ijapa.isPenUp());
+        ijapa.turnRight();
+        assertEquals(Direction.SOUTH, ijapa.checkCurrentDirection());
+        assertEquals(new Position(0,0), ijapa.currentPosition());
+        ijapa.moveForward(5);
+        assertEquals(new Position(4, 0), ijapa.currentPosition());
+        ijapa.turnRight();
+        ijapa.turnRight();
+        assertEquals(Direction.NORTH, ijapa.checkCurrentDirection());
+        ijapa.moveForward(5);
+        assertEquals(new Position(0, 0), ijapa.currentPosition());
+    }
+
+
+
 }
