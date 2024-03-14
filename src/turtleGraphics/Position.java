@@ -16,5 +16,23 @@ public class Position {
         return false;
     }
 
+    public String toString(){
+        return String.format("(%d, %d)", row, column);
+    }
 
+    public int getColumn() {
+        return column;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
 }
