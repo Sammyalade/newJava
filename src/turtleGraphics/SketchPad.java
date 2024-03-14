@@ -1,5 +1,7 @@
 package turtleGraphics;
 
+import java.util.Arrays;
+
 public class SketchPad {
     private int[][] sketchPad;
     public SketchPad(int row, int column) {
@@ -10,6 +12,11 @@ public class SketchPad {
         return sketchPad[row][column];
     }
 
-    public void write() {
+    public String toString(){
+        return String.format(Arrays.deepToString(sketchPad));
+    }
+
+    public void write(int row, int column) {
+        sketchPad[row][column] = 1;
     }
 }
