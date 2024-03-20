@@ -1,7 +1,6 @@
 package diaryTest;
 
 import diaryApp.Diary;
-import diaryApp.Entry;
 import diaryApp.exception.DiaryIsLockedException;
 import diaryApp.exception.EntryIsEmptyException;
 import diaryApp.exception.EntryNotFoundException;
@@ -83,7 +82,7 @@ public class DiaryTest {
         myDiary.createEntry(1234, "My Entry", "This is first Entry");
 
 
-        assertTrue(myDiary.findEntry(1, 1234) instanceof Entry);
+        assertNotNull(myDiary.findEntry(1, 1234));
     }
 
     @Test
