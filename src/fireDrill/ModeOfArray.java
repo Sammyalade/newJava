@@ -2,12 +2,7 @@ package fireDrill;
 
 import java.util.Arrays;
 
-public class HighestOccuringNumber {
-
-    public static void main(String[] args) {
-        checkForMode(1, 2, 2, 3, 4, 2);
-        checkForMode(2, 3, 3, 5, 6, 7);
-    }
+public class ModeOfArray {
 
     public static String checkForMode(int... numbers){
         int modeChecker = 0;
