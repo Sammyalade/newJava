@@ -5,19 +5,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        FloCheckerTwo floChecker = new FloCheckerTwo();
 
-        System.out.println("""
-    Welcome to FloChecker!
-    ==========================================================
-    FloChecker helps you track your menstrual cycle,
-    predict your next period, and identify your fertile window.
-    ==========================================================
-    Let's get started!
-    """);
-
-        try {
+        try (Scanner scanner = new Scanner(System.in)) {
+            FloCheckerTwo floChecker = new FloCheckerTwo();
+            System.out.println("""
+                    Welcome to FloChecker!
+                    ==========================================================
+                    FloChecker helps you track your menstrual cycle,
+                    predict your next period, and identify your fertile window.
+                    ==========================================================
+                    Let's get started!
+                    """);
             System.out.println("Enter your last menstrual date (YYYY-MM-DD):");
             String lastMenstrualDate = scanner.nextLine();
 
@@ -29,13 +27,10 @@ public class Main {
 
             String result = floChecker.checkMenstrualCircle(lastMenstrualDate, cycleLength, periodLength);
             System.out.println(result);
-        } catch (InputMismatchException ex){
+        } catch (InputMismatchException ex) {
             System.out.println("Closing the app now, please run again and enter correct details.......");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-        } finally {
-            scanner.close();
         }
     }
 }
