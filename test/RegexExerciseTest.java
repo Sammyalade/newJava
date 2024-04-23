@@ -8,4 +8,9 @@ public class RegexExerciseTest {
     public void test() {
         assertTrue(RegexExercise.validatePhoneNumber("09071233456"));
     }
+
+    @Test
+    public void test2() {
+        assertTrue(RegexExercise.validatePhoneNumber("9071233456"));
+    }
 }
