@@ -13,4 +13,11 @@ public class RegexExerciseTest {
     public void test2() {
         assertTrue(RegexExercise.validatePhoneNumber("9071233456"));
     }
+
+    @Test
+    public void test3() {
+        assertTrue(RegexExercise.validateEmail("sam@semicolon.africa"));
+    }
+
+
 }
