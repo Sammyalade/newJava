@@ -49,7 +49,7 @@ public class SevenSegmentDisplayTwo {
         }
     }
 
-    public void switchOn() {
+    public boolean switchOn() {
         int[] entries = putEntriesInAnArray(switches);
         if (entries[7] == 1){
             checkHorizontalSwitchToPrint(entries[0]);
@@ -60,6 +60,7 @@ public class SevenSegmentDisplayTwo {
         } else {
             System.out.println("Main switch is off");
         }
+        return false;
     }
 
     private int[] putEntriesInAnArray(String switch1) {
