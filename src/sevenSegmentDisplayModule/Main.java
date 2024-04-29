@@ -12,7 +12,7 @@ public class Main {
             String switchPattern = scanner.nextLine();
 
             SevenSegmentDisplayTwo display = new SevenSegmentDisplayTwo(switchPattern);
-            //System.out.println(display.switchOn());
+            System.out.println(display.switchOn());
         } catch (InputMismatchException e) {
             System.out.println("Invalid input: " + e.getMessage());
         } catch (RuntimeException e) {
