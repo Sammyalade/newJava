@@ -1,21 +1,31 @@
 public class Isogram {
 
     public static boolean checkIsogram(String word) {
-        System.out.println(word.strip().toLowerCase());
-        String string = checkForDuplicate(word.strip().toLowerCase()).strip();
+        String string = checkForDuplicate(word.toLowerCase());
         System.out.println(string);
-        return checkForDuplicate(word.strip().toLowerCase()).strip().length() == 26;
+        return checkForDuplicate(word.toLowerCase()).length() == 26;
     }
 
     private static String checkForDuplicate(String word) {
-        char[] chars = word.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            for (int j = i + 1; j < chars.length; j++) {
-                if (chars[i] == chars[j]){
-
+        StringBuilder result = new StringBuilder(word);
+        for (int i = 0; i < result.length(); i++) {
+            char currentChar = result.charAt(i);
+            for (int j = i + 1; j < result.length(); j++) {
+                if (currentChar == result.charAt(j)) {
+                    result.setCharAt(j, ' ');
                 }
             }
         }
-        return new String(chars);
+        return cleanSpaces(result);
+    }
+
+    private static String cleanSpaces(StringBuilder result) {
+        StringBuilder cleanedResult = new StringBuilder();
+        for (int i = 0; i < result.length(); i++) {
+            if (result.charAt(i) != ' ') {
+                cleanedResult.append(result.charAt(i));
+            }
+        }
+        return cleanedResult.toString();
     }
 }
